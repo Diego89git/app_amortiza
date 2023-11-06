@@ -1,0 +1,13 @@
+.content {
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-image: url("/assets/imagenes/presentacion/fondo_black2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 2px 20px;
+    color: white;
+    border-radius: 10px;
+   
+}
