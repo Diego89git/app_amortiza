@@ -1,1 +1,17 @@
-<p>acceso-presentacion works!</p>
+<div class="content">
+    <form class="formulario" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+        <div class="campo">
+            <label for="nombre">
+                Nombre
+            </label>
+            <input id="nombre" type="text" formControlName="nombre">
+        </div>
+        <div class="campo">
+            <label for="direccion">
+                Contraseña
+            </label>
+            <input id="direccion" type="text" formControlName="direccion">
+        </div>
+        <button class="button" type="submit">Acceder admin</button>
+    </form>
+</div>

@@ -10,6 +10,8 @@ import { HomePresentacionComponent } from './pages/home-presentacion/home-presen
 import { ContactPresentacionComponent } from './pages/contact-presentacion/contact-presentacion.component';
 import { AccesoPresentacionComponent } from './pages/acceso-presentacion/acceso-presentacion.component';
 import { SisPresentacionComponent } from './pages/sis-presentacion/sis-presentacion.component';
+import { MenuItemPresentacionComponent } from './componentes/menu-item-presentacion/menu-item-presentacion.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,11 +23,13 @@ import { SisPresentacionComponent } from './pages/sis-presentacion/sis-presentac
     HomePresentacionComponent,
     ContactPresentacionComponent,
     AccesoPresentacionComponent,
-    SisPresentacionComponent
+    SisPresentacionComponent,
+    MenuItemPresentacionComponent
   ],
   imports: [
     CommonModule,
-    PresentacionRoutingModule
+    PresentacionRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
     PrincipalPresentacionComponent,
@@ -35,7 +39,8 @@ import { SisPresentacionComponent } from './pages/sis-presentacion/sis-presentac
     HomePresentacionComponent,
     ContactPresentacionComponent,
     AccesoPresentacionComponent,
-    SisPresentacionComponent
+    SisPresentacionComponent,
+    MenuItemPresentacionComponent
   ]
 })
 export class PresentacionModule { }
