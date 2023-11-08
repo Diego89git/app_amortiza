@@ -6,6 +6,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\PermisoController;
+use App\Http\Controllers\SegmentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,5 +51,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[PermisoController::class,'getById']);
         Route::put('/{Id}',[PermisoController::class,'update']);
         Route::delete('/{Id}',[PermisoController::class,'destroy']);
+    });
+    Route::prefix('segmentos')->group(function(){
+        Route::get('/',[SegmentoController::class,'get']);
+        Route::post('/',[SegmentoController::class,'create']);
+        Route::get('/{Id}',[SegmentoController::class,'getById']);
+        Route::put('/{Id}',[SegmentoController::class,'update']);
+        Route::delete('/{Id}',[SegmentoController::class,'destroy']);
     });
 });

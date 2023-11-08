@@ -3,24 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Permiso;
+use App\Models\Segmento;
 
-class PermisoController extends Controller
+class SegmentoController extends Controller
 {
     public function get()
     {
-        $data=Permiso::select('permiso.*','users.name as Usuario','institucion.Nombre as Institucion','rol.Nombre as Rol')
-        ->join('users','permiso.IdUser','=','users.id')
-        ->join('institucion','permiso.IdInstitucion','=','institucion.Id')
-        ->join('rol','permiso.IdRol','=','rol.Id')
+        $data=Segmento::select('segmento.*','institucion.Nombre as Institucion')
+        ->join('institucion','segmento.IdInstitucion','=','institucion.Id')
         ->get();
         return response()->json($data);
     }
     public function create(Request $request)
     {
 
-        $permiso=new Permiso($request->input());
-        $permiso->save();
+        $segmento=new Segmento($request->input());
+        $segmento->save();
         return response()->json([
             'estado'=>true,
             'mensaje'=>'Registro creado Satisfactoriamente'
@@ -28,11 +26,9 @@ class PermisoController extends Controller
     }
     public function getById($id){
         try {
-            $data=Permiso::select('permiso.*','users.name as Usuario','institucion.Nombre as Institucion','rol.Nombre as Rol')
-                ->join('users','permiso.IdUser','=','users.id')
-                ->join('institucion','permiso.IdInstitucion','=','institucion.Id')
-                ->join('rol','permiso.IdRol','=','rol.Id')
-                ->where('permiso.Id','=',$id)
+            $data=Segmento::select('segmento.*','institucion.Nombre as Institucion')
+                ->join('institucion','segmento.IdInstitucion','=','institucion.Id')
+                ->where('segmento.Id','=',$id)
                 ->get();
             return response()->json([
                 'estado'=>true,
@@ -48,7 +44,7 @@ class PermisoController extends Controller
     public function update(Request $request, $Id)
     {
         try {
-            Permiso::find($Id)->update($request->input());
+            Segmento::find($Id)->update($request->input());
         return response()->json([
             'estado'=>true,
             'mensaje'=>'Registro actualizado Satisfactoriamente'
@@ -64,7 +60,7 @@ class PermisoController extends Controller
     public function destroy($Id)
     {
         try {
-            Permiso::find($Id)->delete();
+            Segmento::find($Id)->delete();
             return response()->json([
                     'estado'=>true,
                     'mensaje'=>'Registro eliminado satisfactoriamente'
