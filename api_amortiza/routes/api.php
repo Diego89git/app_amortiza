@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InstitucionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,13 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[RolController::class,'getById']);
         Route::put('/{Id}',[RolController::class,'update']);
         Route::delete('/{Id}',[RolController::class,'destroy']);
-        Route::post('auth/logout',[AuthController::class,'logout']);
+    });
+    Route::post('auth/logout',[AuthController::class,'logout']);
+    Route::prefix('instituciones')->group(function(){
+        Route::get('/',[InstitucionController::class,'get']);
+        Route::post('/',[InstitucionController::class,'create']);
+        Route::get('/{Id}',[InstitucionController::class,'getById']);
+        Route::put('/{Id}',[InstitucionController::class,'update']);
+        Route::delete('/{Id}',[InstitucionController::class,'destroy']);
     });
 });
