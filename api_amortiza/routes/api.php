@@ -9,6 +9,7 @@ use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\SegmentoController;
 use App\Http\Controllers\TasaController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\AplicacioncargoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,5 +75,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[CargoController::class,'getById']);
         Route::put('/{Id}',[CargoController::class,'update']);
         Route::delete('/{Id}',[CargoController::class,'destroy']);
+    });
+    Route::prefix('aplicarcargos')->group(function(){
+        Route::get('/',[AplicacioncargoController::class,'get']);
+        Route::post('/',[AplicacioncargoController::class,'create']);
+        Route::get('/{Id}',[AplicacioncargoController::class,'getById']);
+        Route::put('/{Id}',[AplicacioncargoController::class,'update']);
+        Route::delete('/{Id}',[AplicacioncargoController::class,'destroy']);
     });
 });
