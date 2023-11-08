@@ -3,27 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Institucion;
+use App\Models\Permiso;
 
-class InstitucionController extends Controller
+class PermisoController extends Controller
 {
     public function get()
     {
-        $institucion=Institucion::all();
-        return response()->json($institucion);
+        $data=Permiso::select('permiso.*','users.name as Usuario','institucion.Nombre as Institucion','rol.Nombre as Rol')
+        ->join('users','permiso.IdUser','=','users.id')
+        ->join('institucion','permiso.IdInstitucion','=','institucion.Id')
+        ->join('rol','permiso.IdRol','=','rol.Id')
+        ->get();
+        $permiso=Permiso::all();
+        return response()->json($data);
     }
     public function create(Request $request)
     {
-        $reglas =['Nombre'=>'required|string|min:1|max:100'];
-        $validador=\Validator::make($request->input(),$reglas);
-        if($validador->fails()){
-            return response()->json([
-                'estado'=>false,
-                'errores'=>$validador->errors()->all()
-            ],400);
-        }
-        $institucion=new Institucion($request->input());
-        $institucion->save();
+
+        $permiso=new Permiso($request->input());
+        $permiso->save();
         return response()->json([
             'estado'=>true,
             'mensaje'=>'Registro creado Satisfactoriamente'
@@ -31,7 +29,12 @@ class InstitucionController extends Controller
     }
     public function getById($id){
         try {
-            $data=Institucion::find($id);
+            $data=Permiso::select('permiso.*','users.name as Usuario','institucion.Nombre as Institucion','rol.Nombre as Rol')
+                ->join('users','permiso.IdUser','=','users.id')
+                ->join('institucion','permiso.IdInstitucion','=','institucion.Id')
+                ->join('rol','permiso.IdRol','=','rol.Id')
+                ->where('permiso.Id','=',$id)
+                ->get();
             return response()->json([
                 'estado'=>true,
                 'dato'=>$data
@@ -46,7 +49,7 @@ class InstitucionController extends Controller
     public function update(Request $request, $Id)
     {
         try {
-            Institucion::find($Id)->update($request->input());
+            Permiso::find($Id)->update($request->input());
         return response()->json([
             'estado'=>true,
             'mensaje'=>'Registro actualizado Satisfactoriamente'
@@ -62,7 +65,7 @@ class InstitucionController extends Controller
     public function destroy($Id)
     {
         try {
-            Institucion::find($Id)->delete();
+            Permiso::find($Id)->delete();
             return response()->json([
                     'estado'=>true,
                     'mensaje'=>'Registro eliminado satisfactoriamente'

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InstitucionController;
+use App\Http\Controllers\PermisoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[InstitucionController::class,'getById']);
         Route::put('/{Id}',[InstitucionController::class,'update']);
         Route::delete('/{Id}',[InstitucionController::class,'destroy']);
+    });
+    Route::prefix('permisos')->group(function(){
+        Route::get('/',[PermisoController::class,'get']);
+        Route::post('/',[PermisoController::class,'create']);
+        Route::get('/{Id}',[PermisoController::class,'getById']);
+        Route::put('/{Id}',[PermisoController::class,'update']);
+        Route::delete('/{Id}',[PermisoController::class,'destroy']);
     });
 });
