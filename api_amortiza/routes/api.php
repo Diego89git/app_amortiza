@@ -8,6 +8,7 @@ use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\SegmentoController;
 use App\Http\Controllers\TasaController;
+use App\Http\Controllers\CargoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,5 +67,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[TasaController::class,'getById']);
         Route::put('/{Id}',[TasaController::class,'update']);
         Route::delete('/{Id}',[TasaController::class,'destroy']);
+    });
+    Route::prefix('cargos')->group(function(){
+        Route::get('/',[CargoController::class,'get']);
+        Route::post('/',[CargoController::class,'create']);
+        Route::get('/{Id}',[CargoController::class,'getById']);
+        Route::put('/{Id}',[CargoController::class,'update']);
+        Route::delete('/{Id}',[CargoController::class,'destroy']);
     });
 });
