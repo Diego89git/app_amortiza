@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InstitucionController;
 use App\Http\Controllers\PermisoController;
 use App\Http\Controllers\SegmentoController;
+use App\Http\Controllers\TasaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,5 +59,12 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[SegmentoController::class,'getById']);
         Route::put('/{Id}',[SegmentoController::class,'update']);
         Route::delete('/{Id}',[SegmentoController::class,'destroy']);
+    });
+    Route::prefix('tasas')->group(function(){
+        Route::get('/',[TasaController::class,'get']);
+        Route::post('/',[TasaController::class,'create']);
+        Route::get('/{Id}',[TasaController::class,'getById']);
+        Route::put('/{Id}',[TasaController::class,'update']);
+        Route::delete('/{Id}',[TasaController::class,'destroy']);
     });
 });
