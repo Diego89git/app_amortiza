@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-item-menu-admin',
@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./item-menu-admin.component.css']
 })
 export class ItemMenuAdminComponent {
-
+  @Input() data: any
+  @Input() contraer: any
 }

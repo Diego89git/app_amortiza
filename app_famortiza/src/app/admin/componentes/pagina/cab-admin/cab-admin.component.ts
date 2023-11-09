@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./cab-admin.component.css']
 })
 export class CabAdminComponent {
-
+  
 }

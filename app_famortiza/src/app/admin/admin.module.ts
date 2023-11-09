@@ -26,6 +26,7 @@ import { FormTasasAdminComponent } from './componentes/pages/tasas/form-tasas-ad
 import { PagCargosAdminComponent } from './componentes/pages/cargos/pag-cargos-admin/pag-cargos-admin.component';
 import { TablaCargosAdminComponent } from './componentes/pages/cargos/tabla-cargos-admin/tabla-cargos-admin.component';
 import { FormCargosAdminComponent } from './componentes/pages/cargos/form-cargos-admin/form-cargos-admin.component';
+import { PagCompartidoCabeceraComponent } from './componentes/pages/compartido/pag-compartido-cabecera/pag-compartido-cabecera.component';
 
 //elementos de prime ng
 import { ToastModule } from 'primeng/toast';
@@ -48,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
 import { SharedModule } from 'primeng/api';
 import { ListboxModule } from 'primeng/listbox';
+//cierra primeng
 
 @NgModule({
   declarations: [
@@ -74,7 +76,8 @@ import { ListboxModule } from 'primeng/listbox';
     FormTasasAdminComponent,
     PagCargosAdminComponent,
     TablaCargosAdminComponent,
-    FormCargosAdminComponent
+    FormCargosAdminComponent,
+    PagCompartidoCabeceraComponent
     
   ],
   imports: [
@@ -126,7 +129,8 @@ import { ListboxModule } from 'primeng/listbox';
     FormTasasAdminComponent,
     PagCargosAdminComponent,
     TablaCargosAdminComponent,
-    FormCargosAdminComponent
+    FormCargosAdminComponent,
+    PagCompartidoCabeceraComponent
     
   ]
 })

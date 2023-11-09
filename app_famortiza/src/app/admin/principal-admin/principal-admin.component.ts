@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./principal-admin.component.css']
 })
 export class PrincipalAdminComponent {
-
+  contraerSelected: any;
+  contraer(a: any) {
+    this.contraerSelected = a
+  }
 }
