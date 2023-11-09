@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./pag-usuarios-admin.component.css']
 })
 export class PagUsuariosAdminComponent {
-
+  data:any={icono:'',titulo:'Usuarios'}
 }

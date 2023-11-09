@@ -1,1 +1,34 @@
-<p>form-usuarios-admin works!</p>
+<p-dialog 
+    [(visible)]="dataDialog" 
+    [style]="{ width: '450px' }" 
+    header="Detalle de Registro" 
+    [modal]="true"
+    [style]="{ width: '400px', height: '500px' }"
+    (onShow)="showDialog()"
+    (onHide)="hideDialog()">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText id="name" [(ngModel)]="data.name" />
+                <label htmlFor="name">Nombre</label>
+                <small class="p-error" *ngIf="submitted && !data?.name">Nombre es requerido.</small>
+            </span>
+        </div>        
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText id="email"  [(ngModel)]="data.email"/>
+                <label htmlFor="observacion">Correo Electrónico</label>
+            </span>            
+        </div>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText id="password"  [(ngModel)]="data.password"/>
+                <label htmlFor="observacion">Contraseña</label>
+            </span>            
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveRegistro()"></button>
+    </ng-template>
+</p-dialog>
