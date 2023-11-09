@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./pag-tasas-admin.component.css']
 })
 export class PagTasasAdminComponent {
-
+  data:any={icono:'',titulo:'Tasas de Interés'}
 }

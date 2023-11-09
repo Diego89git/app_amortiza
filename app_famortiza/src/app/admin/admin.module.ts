@@ -49,6 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardModule } from 'primeng/card';
 import { SharedModule } from 'primeng/api';
 import { ListboxModule } from 'primeng/listbox';
+import { DividerModule } from 'primeng/divider';
 //cierra primeng
 
 @NgModule({
@@ -103,7 +104,8 @@ import { ListboxModule } from 'primeng/listbox';
     CardModule,
     SharedModule,
     ListboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DividerModule
   ],
   exports: [
     PrincipalAdminComponent,

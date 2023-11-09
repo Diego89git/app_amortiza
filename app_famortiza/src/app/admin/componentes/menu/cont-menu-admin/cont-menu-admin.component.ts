@@ -18,7 +18,7 @@ export class ContMenuAdminComponent {
       { 'Id': 2, 'Nombre': 'Instituciones', 'Logo': 'fa-solid fa-building-columns', 'Seleccionado': false, 'route': 'instituciones' },
       { 'Id': 3, 'Nombre': 'Usuarios', 'Logo': 'fa-solid fa-users', 'Seleccionado': false, 'route': 'usuarios' },
       { 'Id': 3, 'Nombre': 'Segmentos', 'Logo': 'fa-solid fa-business-time', 'Seleccionado': false, 'route': 'segmentos' },
-      { 'Id': 3, 'Nombre': 'Tasas Interes', 'Logo': 'fa-solid fa-percent', 'Seleccionado': false, 'route': 'tasas' },
+      { 'Id': 3, 'Nombre': 'Tasas de Interes', 'Logo': 'fa-solid fa-percent', 'Seleccionado': false, 'route': 'tasas' },
       { 'Id': 3, 'Nombre': 'Cargos Indirectos', 'Logo': 'fa-solid fa-file-invoice-dollar', 'Seleccionado': false, 'route': 'cargos' }]
   }
 

@@ -1,9 +1,0 @@
-.tab-contact{
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-}
-.tab-item{
-    display: flex;
-    gap: 5px;
-}
