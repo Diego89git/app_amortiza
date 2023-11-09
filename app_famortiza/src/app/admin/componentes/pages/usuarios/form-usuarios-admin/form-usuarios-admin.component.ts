@@ -75,7 +75,7 @@ export class FormUsuariosAdminComponent {
   }
   actualizarData(row: any): void {
     console.log(this.data)
-    this.usuariosService.putData(row.Id, row).subscribe(response => {
+    this.usuariosService.putData(row.id, row).subscribe(response => {
       this.onClick.emit()
       this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Registro Actualizado', life: 3000 });
     });
