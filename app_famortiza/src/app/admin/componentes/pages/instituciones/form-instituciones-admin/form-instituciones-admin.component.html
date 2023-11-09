@@ -1,1 +1,76 @@
-<p>form-instituciones-admin works!</p>
+<p-dialog 
+    [(visible)]="dataDialog" 
+    [style]="{ width: '450px' }" 
+    header="Detalle de Registro" 
+    [modal]="true"
+    [style]="{ width: '400px', height: '500px' }"
+    (onShow)="showDialog()"
+    (onHide)="hideDialog()">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText id="nombre" [(ngModel)]="data.Nombre" />
+                <label htmlFor="nombre">Nombre</label>
+                <small class="p-error" *ngIf="submitted && !data?.Nombre">Nombre es requerido.</small>
+            </span>
+        </div>        
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText id="observacion"  [(ngModel)]="data.Observacion"/>
+                <label htmlFor="observacion">Observación</label>
+            </span>            
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <i class="fa-solid fa-location-dot"></i>
+                </span>
+                <input pInputText  [(ngModel)]="data.Direccion" placeholder="Dirección"/>
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <i class="fa-solid fa-globe"></i>
+                </span>
+                <input pInputText  [(ngModel)]="data.PaginaWeb" placeholder="Pagina Web"/>
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <i class="fa-solid fa-envelope"></i>
+                </span>
+                <input pInputText  [(ngModel)]="data.Correo" placeholder="Correo Electronico"/>
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <i class="fa-solid fa-phone"></i>
+                </span>
+                <input pInputText  [(ngModel)]="data.Telefono" placeholder="Teléfono"/>
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                </span>
+                <input pInputText  [(ngModel)]="data.Celular" placeholder="Celular"/>
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <i class="fa-solid fa-link"></i>
+                </span>
+                <input pInputText  [(ngModel)]="data.RutaLogo" placeholder="Link Logo"/>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveRegistro()"></button>
+    </ng-template>
+</p-dialog>

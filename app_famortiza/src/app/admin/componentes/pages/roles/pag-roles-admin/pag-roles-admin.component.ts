@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./pag-roles-admin.component.css']
 })
 export class PagRolesAdminComponent {
-  data:any={icono:'',titulo:'Categorias'}
+  data:any={icono:'',titulo:'Roles de Usuario'}
 }

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./pag-instituciones-admin.component.css']
 })
 export class PagInstitucionesAdminComponent {
-
+  data:any={icono:'',titulo:'Instituciones Financieras'}
 }
