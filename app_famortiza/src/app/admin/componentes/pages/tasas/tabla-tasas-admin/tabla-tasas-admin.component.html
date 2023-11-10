@@ -1,0 +1,76 @@
+<div class="card">
+    <p-toast></p-toast>
+    <p-table #dt [value]="dataSet" [rows]="5" [paginator]="true" [globalFilterFields]="['Detalle', 'Segmento','Observacion']"
+        [rowHover]="true" dataKey="Id" [(selection)]="SelectedDataSet" [exportHeader]="'customExportHeader'"
+        [tableStyle]="{ 'min-width': '25rem' }"
+        currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+        [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button title="Exportar a Excel" type="button" pButton pRipple icon="pi pi-file-excel"
+                    (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS"
+                    tooltipPosition="bottom"></button>
+                <button title="Exportar a PDF" type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+                    class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                <button class="btn-new-reg" (click)="openNew()">Nuevo Registro</button>
+            </div>
+            <div class="flex align-items-center justify-content-between">
+                <h5 class="m-0">Gestion de Registros</h5>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" #textoBuscar (input)="dt.filterGlobal(textoBuscar.value, 'contains')"
+                        placeholder="Buscar..." />
+                </span>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+
+            <tr class="reg">
+                <th >Id</th>
+                <th >Institucion-Segmento </th>
+                <th >Detalle </th>
+                <th >Observacion </th>
+                <th >Tasa Efectiva </th>
+                <th >Tasa Nominal </th>
+                <th >Plazo Minimo (Meses)</th>
+                <th >Plazo Máximo (Meses)</th>
+                <th >Monto Minimo</th>
+                <th >Monto Máximo</th>
+                <th >OPCIONES</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+            <tr >
+                <td>{{ row.Id}}</td>
+                <td>{{ row.Segmento}}</td>
+                <td>{{ row.Detalle}}</td>  
+                <td>{{ row.Observacion}}</td>                
+                <td>{{ row.TasaNominal}}</td> 
+                <td>{{ row.TasaEfectiva}}</td>  
+                <td>{{ row.PlazoMinimo}}</td>  
+                <td>{{ row.PlazoMaximo}}</td>
+                <td>{{ row.MontoMinimo}}</td>
+                <td>{{ row.MontoMaximo}}</td>                                
+                <td class="btns-options">
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
+                        (click)="editRow(row)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="deleteRow(row)"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<!-- En el template del padre   -->
+<ng-container *ngIf="mostrarForm">
+    <app-form-tasas-admin 
+    [data]="data" 
+    [dataDropdown]="dataDropdown" 
+    [dataSet]="dataSet" 
+    [dataDialog]="dataDialog" 
+    (onClick)="hideDialog()" 
+    [selectedDropdown]="selectedDropdown"></app-form-tasas-admin>
+  </ng-container>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

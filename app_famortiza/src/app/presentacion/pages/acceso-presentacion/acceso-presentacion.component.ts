@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/servicios/APIS/api-amortiza/auth.service';
 
 @Component({
   selector: 'app-acceso-presentacion',
@@ -7,25 +9,44 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./acceso-presentacion.component.css']
 })
 export class AccesoPresentacionComponent {
-  items: any;
-  checkoutForm: any;
-  constructor(
-        private formBuilder: FormBuilder ) 
-  {
+  public checkoutForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, 
+              private authService: AuthService,
+              private router: Router) {
     this.checkoutForm = this.formBuilder.group({
-      name: '',
-      address: ''
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
-  ngOnInit() {
-    this.items = [{ Id: 1, name: 'Diego', address: 'Izamba', price:25.25 }]
-  }
-  onSubmit(row: any) {
-    // Process checkout data here
-    this.items = []
-    this.checkoutForm.reset();
+  onSubmit(): void {
+    if (this.checkoutForm.valid) {
+      const credentials = this.checkoutForm.value;
 
-    console.warn('Your order has been submitted', row);
+      this.authService.login(credentials).subscribe(
+        (response) => {
+          // Manejar la respuesta exitosa
+          if (response.estado) {
+            console.log(response.mesaje);
+            console.log('Usuario logueado:', response.dato);
+            console.log('Token recibido:', response.token);
+
+            // Almacena el token en el servicio de autenticación
+            this.authService.setToken(response.token);
+
+            // Puedes redirigir a otra página aquí si es necesario
+            this.router.navigate(['/admin']);
+          } else {
+            // La API devolvió un estado falso, puedes manejar el error según tus necesidades
+            console.error('Error al iniciar sesión:', response.mesaje);
+          }
+        },
+        (error) => {
+          // Manejar errores, mostrar mensajes, etc.
+          console.error('Error al comunicarse con la API:', error);
+        }
+      );
+    }
   }
 }

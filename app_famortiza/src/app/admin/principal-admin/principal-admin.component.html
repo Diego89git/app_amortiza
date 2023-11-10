@@ -1,0 +1,14 @@
+<div class="content">
+    <div class="cabecera">
+        <app-cab-admin></app-cab-admin>
+    </div>
+    <div class="contenido">
+        <div class="menu open" [ngClass]="{'contraer':contraerSelected}">
+            <app-cont-menu-admin (onClick)="contraer($event)"></app-cont-menu-admin>
+        </div>
+        <div class="vistas">
+
+            <app-contenido-admin></app-contenido-admin>
+        </div>
+    </div>
+</div>
