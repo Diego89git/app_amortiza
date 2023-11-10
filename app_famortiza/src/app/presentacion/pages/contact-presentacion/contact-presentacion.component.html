@@ -1,0 +1,23 @@
+<div class="content">
+    <form class="formulario" [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+        <div class="campo">
+            <label for="nombre">
+                Nombre
+            </label>
+            <input id="nombre" type="text" formControlName="nombre">
+        </div>
+        <div class="campo">
+            <label for="direccion">
+                Correo
+            </label>
+            <input id="direccion" type="text" formControlName="direccion">
+        </div>
+        <div class="campo">
+            <label for="mensaje">
+                Mensaje
+            </label>
+            <textarea id="mensaje"  formControlName="mensaje"></textarea>
+        </div>
+        <button class="button" type="submit">Enviar</button>
+    </form>
+</div>

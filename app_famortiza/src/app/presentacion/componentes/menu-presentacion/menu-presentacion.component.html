@@ -1,0 +1,8 @@
+<div class="content">
+    <app-menu-item-presentacion 
+    class="item" 
+    *ngFor="let row of listaMenu" 
+    [item]="row"
+    [routerLink]="row.ruta">
+    </app-menu-item-presentacion>
+</div>

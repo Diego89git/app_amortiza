@@ -1,0 +1,52 @@
+<p-dialog 
+    [(visible)]="dataDialog" 
+    [style]="{ width: '450px' }" 
+    header="Detalle de Registro" 
+    [modal]="true"
+    [style]="{ width: '600px', height: '550px' }"
+    (onShow)="showDialog()"
+    (onHide)="hideDialog()">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <form [formGroup]="formGroup">
+                <p-dropdown formControlName="IdInstitucion" [options]="dataDropdown" [(ngModel)]="selectedDropdown" optionLabel="Titulo" [showClear]="false" placeholder="Selecciona una Institucion" >
+                    <ng-template pTemplate="selectedItem">
+                        <div class="flex" *ngIf="selectedDropdown">                        
+                            <div>{{ selectedDropdown.Nombre }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-rowDropdown pTemplate="item">
+                        <div class="flex">                        
+                            <div>{{ rowDropdown.Nombre }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </form>
+        </div>
+        <div class="field">
+            <span class="p-float-label">
+                <input pInputText id="nombre" [(ngModel)]="data.Nombre" />
+                <label htmlFor="nombre">Nombre</label>
+                <small class="p-error" *ngIf="submitted && !data?.Nombre">Nombre es requerido.</small>
+            </span>
+        </div>        
+        <div class="field">
+            <span class="p-float-label">
+                <textarea rows="5" cols="32" id="descripcion" pInputTextarea [(ngModel)]="data.Descripcion"></textarea>
+                <label htmlFor="descripcion">Descripción</label>
+            </span>            
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">
+                    <i class="fa-solid fa-link"></i>
+                </span>
+                <input pInputText  [(ngModel)]="data.RutaImagen" placeholder="Link Imagen"/>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveRegistro()"></button>
+    </ng-template>
+</p-dialog>
