@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./pag-cargos-admin.component.css']
 })
 export class PagCargosAdminComponent {
-
+  data:any={icono:'',titulo:'Cargos Indirectos'}
 }

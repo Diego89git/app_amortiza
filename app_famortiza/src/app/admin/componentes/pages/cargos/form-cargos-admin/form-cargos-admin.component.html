@@ -1,1 +1,102 @@
-<p>form-cargos-admin works!</p>
+<p-dialog [(visible)]="dataDialog" [style]="{ width: '450px' }" header="Detalle de Registro" [modal]="true"
+    [style]="{ width: '700px', height: '750px' }" (onShow)="showDialog()" (onHide)="hideDialog()">
+    <ng-template pTemplate="content">
+        <div class="form-panel">
+            <div class="field">
+                <form [formGroup]="formGroup">
+                    <p-dropdown formControlName="IdInstitucion" [options]="dataDropdown" [(ngModel)]="selectedDropdown"
+                        optionLabel="Titulo" [showClear]="false" placeholder="Selecciona una Institucion">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="flex" *ngIf="selectedDropdown">
+                                <div>{{ selectedDropdown.Nombre }}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-rowDropdown pTemplate="item">
+                            <div class="flex">
+                                <div>{{rowDropdown.Nombre}}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </form>
+            </div>
+            <p-divider></p-divider>
+            <div class="group-panel">
+                <div class="subgroup-panel">
+                    <div class="field">
+                        <span class="p-float-label">
+                            <input pInputText id="nombre" [(ngModel)]="data.Nombre" />
+                            <label htmlFor="nombre">Nombre</label>
+                            <small class="p-error" *ngIf="submitted && !data?.Nombre">Nombre es requerido.</small>
+                        </span>
+                    </div>
+                    <div class="field">
+                        <span class="p-float-label">
+                            <textarea rows="5" cols="23" id="descripcion" pInputTextarea
+                                [(ngModel)]="data.Descripcion"></textarea>
+                            <label htmlFor="descripcion">Descripción</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="subgroup-panel">
+                    <div class="field">
+                        <form [formGroup]="formGroup">
+                            <p-dropdown  formControlName="formaPago" [options]="formaPago" [(ngModel)]="selectedFormaPago"
+                                optionLabel="Titulo" [showClear]="false" placeholder="Selecciona una Forma de Pago">
+                                <ng-template pTemplate="selectedItem">
+                                    <div class="flex" *ngIf="selectedFormaPago">
+                                        <div>{{ selectedFormaPago.tipo }}</div>
+                                    </div>
+                                </ng-template>
+                                <ng-template let-rowDropdown pTemplate="item">
+                                    <div class="flex">
+                                        <div>{{rowDropdown.tipo}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </form>
+                    </div>
+                    <div class="field">
+                        <form [formGroup]="formGroup">
+                            <p-dropdown (onChange)="cambioBaseCalculo()" formControlName="baseCalculo" [options]="baseCalculo"
+                                [(ngModel)]="selectedBaseCalculo" optionLabel="Titulo" [showClear]="false"
+                                placeholder="Selecciona una Base para el calculo">
+                                <ng-template pTemplate="selectedItem">
+                                    <div class="flex" *ngIf="selectedBaseCalculo">
+                                        <div>{{ selectedBaseCalculo.tipo }}</div>
+                                    </div>
+                                </ng-template>
+                                <ng-template let-rowDropdown pTemplate="item">
+                                    <div class="flex">
+                                        <div>{{rowDropdown.tipo}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                        </form>
+                    </div>
+                    
+                    <div class="field" *ngIf="mostrarPorcentaje">
+                        <span class="p-float-label">
+                            <p-inputNumber id="porcentaje" [(ngModel)]="data.Porcentaje" mode="decimal"
+                                [minFractionDigits]="2" [maxFractionDigits]="4" inputId="porcentaje" prefix="%">
+                            </p-inputNumber>
+                            <label htmlFor="tasaN">Porcentaje</label>
+                        </span>
+                    </div>
+                    <div class="field" *ngIf="mostrarValor">
+                        <span class="p-float-label">
+                            <p-inputNumber id="valor" [(ngModel)]="data.Valor" mode="currency" currency="USD"
+                                locale="en-US" [minFractionDigits]="2" [maxFractionDigits]="2"> </p-inputNumber>
+                            <label htmlFor="valor">Valor</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"
+            (click)="saveRegistro()"></button>
+    </ng-template>
+</p-dialog>
