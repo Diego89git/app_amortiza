@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('IdCargo');
             $table->string('Estado',15)->default('ACT');
             $table->timestamps();
-            $table->foreign('IdTasa')->references('Id')->on('tasa');
-            $table->foreign('IdCargo')->references('Id')->on('cargo');
+            $table->foreign('IdTasa')->references('Id')->on('tasa')->onDelete('cascade');
+            $table->foreign('IdCargo')->references('Id')->on('cargo')->onDelete('cascade');
         });
     }
 

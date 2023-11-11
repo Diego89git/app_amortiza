@@ -43,6 +43,70 @@ class AplicacioncargoController extends Controller
             ],500);
         }
     }
+    public function aplicarTodos($idCargo)
+    {
+        try {
+            Aplicacioncargo::where('IdCargo',$idCargo)->update(['Estado'=>'ACT']);
+        return response()->json([
+            'estado'=>true,
+            'mensaje'=>'Registro actualizado Satisfactoriamente'
+        ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'estado'=>false,
+                'mensaje'=>$th->getMessage()
+            ],500);
+        }
+        
+    }
+    public function aplicarByTasa($idCargo,$idTasa)
+    {
+        try {
+            Aplicacioncargo::where('IdCargo',$idCargo)->where('IdTasa',$idTasa)->update(['Estado'=>'ACT']);
+        return response()->json([
+            'estado'=>true,
+            'mensaje'=>'Registro actualizado Satisfactoriamente'
+        ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'estado'=>false,
+                'mensaje'=>$th->getMessage()
+            ],500);
+        }
+        
+    }
+    public function quitarTodos($idCargo)
+    {
+        try {
+            Aplicacioncargo::where('IdCargo',$idCargo)->update(['Estado'=>'ELI']);
+        return response()->json([
+            'estado'=>true,
+            'mensaje'=>'Registro actualizado Satisfactoriamente'
+        ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'estado'=>false,
+                'mensaje'=>$th->getMessage()
+            ],500);
+        }
+        
+    }
+    public function quitarByTasa($idCargo, $idTasa)
+    {
+        try {
+            Aplicacioncargo::where('IdCargo',$idCargo)->where('IdTasa',$idTasa)->update(['Estado'=>'ELI']);
+        return response()->json([
+            'estado'=>true,
+            'mensaje'=>'Registro actualizado Satisfactoriamente'
+        ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'estado'=>false,
+                'mensaje'=>$th->getMessage()
+            ],500);
+        }
+        
+    }
     public function update(Request $request, $Id)
     {
         try {
