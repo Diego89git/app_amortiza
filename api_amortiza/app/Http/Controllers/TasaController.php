@@ -4,13 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tasa;
+use App\Models\Cargo;
+use App\Models\Aplicacioncargo;
 
 class TasaController extends Controller
 {
+    public function getByInstitucion($idInstitucion)
+    {
+        $data=Tasa::select('tasa.*','segmento.Nombre as Segmento','institucion.Nombre  as Institucion')
+        ->join('segmento','tasa.IdSegmento','=','segmento.Id')
+        ->join('institucion','segmento.IdInstitucion','=','institucion.Id')
+        ->where('institucion.Id','=',$idInstitucion)
+        ->get();
+        return response()->json($data);
+    }
     public function get()
     {
-        $data=Tasa::select('tasa.*','segmento.Nombre as Segmento')
+        $data=Tasa::select('tasa.*','segmento.Nombre as Segmento','institucion.Nombre  as Institucion')
         ->join('segmento','tasa.IdSegmento','=','segmento.Id')
+        ->join('institucion','segmento.IdInstitucion','=','institucion.Id')
         ->get();
         return response()->json($data);
     }
@@ -19,6 +31,22 @@ class TasaController extends Controller
 
         $tasa=new Tasa($request->input());
         $tasa->save();
+
+        $idSegmento=$request->input('IdSegmento');
+        $cargos=Cargo::select('cargo.Id')
+        ->join('segmento','cargo.IdInstitucion','=','segmento.IdInstitucion')
+        ->where('segmento.Id','=',$idSegmento)
+        ->get();
+        if(count($cargos)>0){
+            foreach ($cargos as $cargo) {
+                $aplicacioncargo=new Aplicacioncargo();
+                $aplicacioncargo->IdTasa=$tasa->Id;
+                $aplicacioncargo->IdCargo=$cargo->Id;
+                $aplicacioncargo->Estado='ELI';
+                $aplicacioncargo->save();
+            }
+        }  
+
         return response()->json([
             'estado'=>true,
             'mensaje'=>'Registro creado Satisfactoriamente'
@@ -26,8 +54,9 @@ class TasaController extends Controller
     }
     public function getById($id){
         try {
-            $data=Tasa::select('tasa.*','segmento.Nombre as Segmento')
+            $data=Tasa::select('tasa.*','segmento.Nombre as Segmento','institucion.Nombre as Institucion')
                 ->join('segmento','tasa.IdSegmento','=','segmento.Id')
+                ->join('institucion','segmento.IdInstitucion','=','institucion.Id')
                 ->where('tasa.Id','=',$id)
                 ->get();
             return response()->json([

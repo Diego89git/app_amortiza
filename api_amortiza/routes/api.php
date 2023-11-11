@@ -10,6 +10,8 @@ use App\Http\Controllers\SegmentoController;
 use App\Http\Controllers\TasaController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\AplicacioncargoController;
+use App\Http\Controllers\AmortizaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('auth/register',[AuthController::class,'create']);
 Route::post('auth/login',[AuthController::class,'login']);
 
+Route::post('amortiza',[AmortizaController::class,'generarAmortizacion']);
+Route::get('/info',[AmortizaController::class,'info']);
+
+Route::get('segmentos/institucion/{Id}',[SegmentoController::class,'getByInstitucion']);
+Route::get('tasas/institucion/{Id}',[TasaController::class,'getByInstitucion']);
+Route::get('cargos/institucion/{Id}',[CargoController::class,'getByInstitucion']);
+Route::get('datos/habilitado',[InstitucionController::class,'getHabilitado']);
+
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::prefix('roles')->group(function(){
         Route::get('/',[RolController::class,'index']);
@@ -47,6 +57,8 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[InstitucionController::class,'getById']);
         Route::put('/{Id}',[InstitucionController::class,'update']);
         Route::delete('/{Id}',[InstitucionController::class,'destroy']);
+        Route::get('/user/{idUser}',[InstitucionController::class,'getByUser']);        
+        Route::get('/habilitar/{id}',[InstitucionController::class,'habilitar']);
     });
     Route::prefix('permisos')->group(function(){
         Route::get('/',[PermisoController::class,'get']);
@@ -68,6 +80,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[TasaController::class,'getById']);
         Route::put('/{Id}',[TasaController::class,'update']);
         Route::delete('/{Id}',[TasaController::class,'destroy']);
+        
     });
     Route::prefix('cargos')->group(function(){
         Route::get('/',[CargoController::class,'get']);
@@ -75,6 +88,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[CargoController::class,'getById']);
         Route::put('/{Id}',[CargoController::class,'update']);
         Route::delete('/{Id}',[CargoController::class,'destroy']);
+        
     });
     Route::prefix('aplicarcargos')->group(function(){
         Route::get('/',[AplicacioncargoController::class,'get']);
@@ -82,5 +96,16 @@ Route::middleware(['auth:sanctum'])->group(function(){
         Route::get('/{Id}',[AplicacioncargoController::class,'getById']);
         Route::put('/{Id}',[AplicacioncargoController::class,'update']);
         Route::delete('/{Id}',[AplicacioncargoController::class,'destroy']);
+        Route::get('/todos/{Id}',[AplicacioncargoController::class,'aplicarTodos']);
+        Route::get('/ninguno/{Id}',[AplicacioncargoController::class,'quitarTodos']);
+        Route::get('/si/{idCargo}/tasa/{idTasa}',[AplicacioncargoController::class,'aplicarByTasa']);
+        Route::get('/no/{idCargo}/tasa/{idTasa}',[AplicacioncargoController::class,'quitarByTasa']);
+    });
+    Route::prefix('users')->group(function(){
+        Route::get('/',[UserController::class,'index']);
+        Route::post('/',[UserController::class,'store']);
+        Route::get('/{Id}',[UserController::class,'getById']);
+        Route::put('/{Id}',[UserController::class,'update']);
+        Route::delete('/{Id}',[UserController::class,'destroy']);
     });
 });
