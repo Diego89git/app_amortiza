@@ -14,6 +14,14 @@ class SegmentoController extends Controller
         ->get();
         return response()->json($data);
     }
+    public function getByInstitucion($idInstitucion)
+    {
+        $data=Segmento::select('segmento.*','institucion.Nombre as Institucion')
+        ->join('institucion','segmento.IdInstitucion','=','institucion.Id')
+        ->where('institucion.Id','=',$idInstitucion)
+        ->get();
+        return response()->json($data);
+    }
     public function create(Request $request)
     {
 

@@ -12,6 +12,37 @@ class InstitucionController extends Controller
         $institucion=Institucion::all();
         return response()->json($institucion);
     }
+    public function getHabilitado()
+    {
+        $data=Institucion::where('Habilitado',true)->get();
+        return response()->json($data);
+    }
+    public function habilitar($Id)
+    {
+        try {
+            Institucion::query()->update(['Habilitado' => false]);
+            Institucion::find($Id)->update(['Habilitado'=>true]);
+        return response()->json([
+            'estado'=>true,
+            'mensaje'=>'Registro actualizado Satisfactoriamente'
+        ],200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'estado'=>false,
+                'mensaje'=>$th->getMessage()
+            ],500);
+        }
+        
+    }
+    public function getByUser($idUser)
+    {
+        $data=Institucion::select('institucion.*')
+        ->join('permiso','institucion.Id','=','permiso.IdInstitucion')
+        ->join('users','permiso.IdUser','=','users.Id')
+        ->where('users.Id','=',$idUser)
+        ->get();
+        return response()->json($data);
+    }
     public function create(Request $request)
     {
         $reglas =['Nombre'=>'required|string|min:1|max:100'];
