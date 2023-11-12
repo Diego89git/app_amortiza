@@ -1,3 +1,29 @@
-<div class="content">
+<div class="content" *ngIf="infoInstitucion">
+    <div class="card-info-inst">
+        <div class="logo">            
+        <img 
+         
+        src="{{infoInstitucion.RutaLogo}}" alt="Image"   width="75"/>
+        </div>
+        <div class="datos">
+            <div class="nombre">
+                <h2>{{infoInstitucion.Nombre}}</h2>
+            </div>
+            <div class="descripcion">
+                <h4>{{infoInstitucion.Observacion}}</h4>
+            </div>
+        </div>
+        <div class="contacts">
+            <div class="tab-item"><i class="fa-solid fa-location-dot"></i>{{ infoInstitucion.Direccion}}</div>
+            <div class="tab-item"><i class="fa-solid fa-globe"></i>{{ infoInstitucion.PaginaWeb}}</div>
+            <div class="tab-item"><i class="fa-solid fa-envelope"></i>{{ infoInstitucion.Correo}}</div>
+            <div class="tab-item"><i class="fa-solid fa-phone"></i>{{ infoInstitucion.Telefono}}</div>
+            <div class="tab-item"><i class="fa-solid fa-mobile-screen"></i>{{ infoInstitucion.Celular}}</div> 
+        </div>
+        
+    </div>
+    <div class="contenido">
+        <router-outlet></router-outlet>
+    </div> 
 
 </div>

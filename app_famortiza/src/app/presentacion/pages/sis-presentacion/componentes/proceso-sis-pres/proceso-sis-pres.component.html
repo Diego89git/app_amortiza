@@ -1,0 +1,100 @@
+<div class="content">
+
+    <div class="fomrulario">
+        <div class="field">
+            <form [formGroup]="formGroup">
+                <label class="field-number" for="IdTasa">Tipo de crédito</label>
+                <p-dropdown formControlName="IdTasa" id="IdTasa" [options]="tasas" [(ngModel)]="selectedTasa"
+                    optionLabel="Titulo" [showClear]="false" placeholder="Selecciona una Tasa">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="flex" *ngIf="selectedTasa">
+                            <div>{{selectedTasa.Segmento}} - {{ selectedTasa.Detalle }} -
+                                {{selectedTasa.TasaEfectiva/100| percent:'1.2-2' }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-rowDropdown pTemplate="item">
+                        <div class="flex">
+                            <div>{{rowDropdown.Segmento}} - {{ rowDropdown.Detalle }} - {{rowDropdown.TasaEfectiva/100|
+                                percent:'1.2-2' }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+            </form>
+        </div>
+        <div class="flex">
+            <div class="flex-auto"
+                title="Solo se permite un monto entre {{selectedTasa.PlazoMinimo}} y {{selectedTasa.PlazoMaximo}}">
+                <label class="field-number" for="horizontal">Plazo</label>
+                <p-inputNumber [(ngModel)]="Plazo" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal"
+                    spinnerMode="horizontal" [step]="1" decrementButtonClass="p-button-danger"
+                    incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
+                    decrementButtonIcon="pi pi-minus" [min]="selectedTasa.PlazoMinimo"
+                    [max]="selectedTasa.PlazoMaximo"></p-inputNumber>
+            </div>
+        </div>
+        <div class="flex">
+            <div class="flex-auto"
+                title="Solo se permite un monto entre {{selectedTasa.MontoMinimo}} y {{selectedTasa.MontoMaximo}}">
+                <label class="field-number" for="currency-us">Monto</label>
+                <p-inputNumber [(ngModel)]="Monto" [showButtons]="true" buttonLayout="horizontal"
+                    spinnerMode="horizontal" [step]="1" decrementButtonClass="p-button-danger"
+                    incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
+                    decrementButtonIcon="pi pi-minus" inputId="currency-us" mode="currency" currency="USD"
+                    locale="en-US" [min]="selectedTasa.MontoMinimo" [max]="selectedTasa.MontoMaximo"></p-inputNumber>
+            </div>
+        </div>
+        <div class="flex">
+            <label class="field-number" for="sis">Sistema</label>
+            <p-dropdown id="sis" [options]="sistemasAmortizacion" [(ngModel)]="sistema" optionLabel="name"
+                placeholder="Select a City"></p-dropdown>
+        </div>
+        <div class="flex">
+            <label class="field-number" for="but">.</label>
+            <button pButton pRipple id="but" label="Generar" icon="pi pi-check"  (click)="generar()"></button>
+        </div>
+        
+
+
+
+    </div>
+
+    <div class="result">
+        <div class="resumen">
+            <h1>Resumen</h1>
+            <p-divider></p-divider>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Detalle</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Monto Solicitado</td><td class="tab-val">{{Monto| currency:'$':'symbol':'1.2-2'}}</td></tr>
+                    <tr><td>Tasa de Interes</td><td class="tab-val">{{selectedTasa.TasaEfectiva/100| percent:'1.2-2'}}</td></tr>
+                    <tr><td>Plazo</td><td class="tab-val">{{Plazo}}</td></tr>
+                    <tr><td>Sistema</td><td class="tab-val">{{sistema.name}}</td></tr>
+                    <tr><td colspan="2">Calculos Generados</td></tr>
+                    <tr *ngIf="resultResumen"><td>Intereses Generados</td><td class="tab-val">{{resultResumen.Interes| currency:'$':'symbol':'1.2-2'}}</td></tr>
+                    <tr *ngIf="resultResumen"><td>Capital e Interes</td><td class="tab-val">{{resultResumen.Cuota| currency:'$':'symbol':'1.2-2'}}</td></tr>
+                    <tr><td colspan="2">Cargos Descontados a la Entrega</td></tr>
+                    <tr *ngFor="let clave of resultCargosEntrega">
+                        <td>{{clave.Nombre}}</td><td class="tab-val">{{clave.Valor| currency:'$':'symbol':'1.2-2'}}</td></tr>
+                    <tr><td>Valor a Recibir</td><td class="tab-val">{{valorEntregar| currency:'$':'symbol':'1.2-2'}}</td></tr>
+                    <tr><td colspan="2">Cargos Adicionados en Cuotas</td></tr>
+                    <tr *ngFor="let clave of resultCargosCuota">
+                        <td>{{clave.Nombre}}</td><td class="tab-val">{{clave.Valor| currency:'$':'symbol':'1.2-2'}}</td></tr>
+                    <tr *ngIf="resultResumen"><td>Total a Pagar</td><td class="tab-val">{{resultResumen.CuotaFinal| currency:'$':'symbol':'1.2-2'}}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tabla">
+            <app-tabla-sis-pres [data]="resultTabla" [columnasTabla]="columnasTabla"
+                [exportColumns]="exportColumns"></app-tabla-sis-pres>
+        </div>
+    </div>
+
+
+</div>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
