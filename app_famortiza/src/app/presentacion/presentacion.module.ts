@@ -12,7 +12,33 @@ import { AccesoPresentacionComponent } from './pages/acceso-presentacion/acceso-
 import { SisPresentacionComponent } from './pages/sis-presentacion/sis-presentacion.component';
 import { MenuItemPresentacionComponent } from './componentes/menu-item-presentacion/menu-item-presentacion.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { InfoSisPresComponent } from './pages/sis-presentacion/componentes/info-sis-pres/info-sis-pres.component';
+import { ProcesoSisPresComponent } from './pages/sis-presentacion/componentes/proceso-sis-pres/proceso-sis-pres.component';
+import { CardinfoSisPresComponent } from './pages/sis-presentacion/componentes/cardinfo-sis-pres/cardinfo-sis-pres.component';
+import { TablaSisPresComponent } from './pages/sis-presentacion/componentes/tabla-sis-pres/tabla-sis-pres.component';
+//primeng
+import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
+import { FileUploadModule } from 'primeng/fileupload';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { TagModule } from 'primeng/tag';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { FormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from 'primeng/api';
+import { ListboxModule } from 'primeng/listbox';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -24,12 +50,38 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContactPresentacionComponent,
     AccesoPresentacionComponent,
     SisPresentacionComponent,
-    MenuItemPresentacionComponent
+    MenuItemPresentacionComponent,
+    InfoSisPresComponent,
+    ProcesoSisPresComponent,
+    CardinfoSisPresComponent,
+    TablaSisPresComponent
   ],
   imports: [
     CommonModule,
     PresentacionRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CardModule,
+    ImageModule,
+    ToastModule ,
+    ToolbarModule ,
+    ButtonModule ,
+    RippleModule ,
+    FileUploadModule ,
+    TableModule ,
+    InputTextModule ,
+    DialogModule ,
+    InputTextareaModule ,
+    DropdownModule ,
+    TagModule ,
+    RadioButtonModule ,
+    InputNumberModule ,
+    ConfirmDialogModule ,
+    FormsModule ,
+    RatingModule ,
+    BrowserAnimationsModule ,
+    SharedModule ,
+    ListboxModule ,
+    DividerModule ,
   ],
   exports: [
     PrincipalPresentacionComponent,
@@ -40,7 +92,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     ContactPresentacionComponent,
     AccesoPresentacionComponent,
     SisPresentacionComponent,
-    MenuItemPresentacionComponent
+    MenuItemPresentacionComponent,
+    InfoSisPresComponent,
+    ProcesoSisPresComponent,
+    CardinfoSisPresComponent,
+    TablaSisPresComponent
   ]
 })
 export class PresentacionModule { }

@@ -1,5 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
-body{
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+body {
     margin: 0;
     padding: 0;
+}
+
+:root {
+    --color-cabecera: #3498db;
+    --color-menu: #1d4675;
+    --color-whatsapp: #25D366;
+    --color-facebook: #3b5998;
+}
+
+.btns-options {
+    display: flex;
+}
+
+.opciones {
+    display: flex;
+}
+.btn-new-reg{
+    color: white;
+    background-color: var(--color-cabecera);
+    border: none;
+    width: 150px;
+    height: 35px;
+    margin: 5px 5px;
+    border-radius: 50px;
+    box-shadow: rgb(39, 38, 38) 3px 3px 3px 1px;
+    cursor: pointer;
+}
+.btn-new-reg:hover{
+    color: var(--color-cabecera);
+    background-color: white;
+    border: 1px solid var(--color-cabecera);
 }

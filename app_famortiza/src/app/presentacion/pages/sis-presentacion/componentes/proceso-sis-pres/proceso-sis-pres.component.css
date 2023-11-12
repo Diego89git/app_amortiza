@@ -1,0 +1,35 @@
+.fomrulario{
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.field-number{
+    width: 10px;
+}
+.result{
+    display: flex;
+    width: 99%;
+    height: 100%;
+    margin: 15px 5px 5px 5px;
+
+}
+.resumen{
+    background-color: white;
+    color: black;
+    width: 25%;
+    height: 100%;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+.tabla{
+    flex: 1;
+    border-radius: 50px;
+}
+td{
+    width: 225px;
+}
+.tab-val{
+    text-align: center;
+    width: 125px;
+}

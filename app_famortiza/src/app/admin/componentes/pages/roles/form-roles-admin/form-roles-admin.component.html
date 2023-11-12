@@ -1,0 +1,25 @@
+<p-dialog 
+    [(visible)]="dataDialog" 
+    [style]="{ width: '450px' }" 
+    header="Detalle de Registro" 
+    [modal]="true"
+    [style]="{ width: '340px', height: '400px' }"
+    (onShow)="showDialog()"
+    (onHide)="hideDialog()">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="nombre">Nombre</label>
+            <input type="text" pInputText id="nombre" [(ngModel)]="data.Nombre" required autofocus />
+            <small class="p-error" *ngIf="submitted && !data?.Nombre">Nombre es requerido.</small>
+        </div>
+        <div class="field">
+            <label for="descripcion">Descripción</label>
+            <input type="text" pInputText id="nombre" [(ngModel)]="data.Descripcion" required autofocus />
+            <small class="p-error" *ngIf="submitted && !data?.Descripcion">Tipo es requerido.</small>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveRegistro()"></button>
+    </ng-template>
+</p-dialog>

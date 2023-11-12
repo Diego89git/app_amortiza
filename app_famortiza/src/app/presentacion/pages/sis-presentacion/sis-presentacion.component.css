@@ -2,12 +2,42 @@
     margin: 5px 0px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     background-image: url("/assets/imagenes/presentacion/fondo_black2.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 2px 20px;
+    padding: 5px 5px;
     color: white;
     border-radius: 10px;
    
+}
+.card-info-inst{
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 1px rgb(109, 116, 79);
+}
+.logo{
+    margin: 0;
+    padding: 0;
+    margin: 10px 35px;
+}
+img{
+    width: 100px;
+    height: 105px;
+    border-radius: 100px;
+}
+.contacts{
+    margin: 10px 35px;
+}
+.tab-item{
+    display: flex;
+    gap: 10px;
+    margin: 5px 0px;
+}
+.contenido{
+    height:auto;
 }
