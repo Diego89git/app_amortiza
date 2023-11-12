@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuariosService {
-  private urlApi=config.apiUrl+'/api/usuarios';
+  private urlApi=config.apiUrl+'/api/users';
   constructor(private http: HttpClient,private authService: AuthService) { }
 
  

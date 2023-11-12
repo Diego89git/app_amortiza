@@ -1,0 +1,38 @@
+<p-table #dt 
+    [value]="data" 
+    [rows]="10" 
+    [paginator]="true" 
+    [rowHover]="true" 
+    dataKey="Indice" 
+    [exportHeader]="'customExportHeader'"
+    [tableStyle]="{ 'min-width': '25rem' }"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} registros"
+    [showCurrentPageReport]="true">
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button title="Exportar a Excel" type="button" pButton pRipple icon="pi pi-file-excel"
+                (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS"
+                tooltipPosition="bottom"></button>
+            <button title="Exportar a PDF" type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+                class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr class="reg">
+            <th *ngFor="let columna of columnasTabla">{{columna}}</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-row let-rowIndex="rowIndex">
+        <tr>
+            <td *ngFor="let columna of columnasTabla; let i = index">
+                <ng-container *ngIf="i === 0; else formatoMoneda">
+                    {{ row[columna] }}
+                </ng-container>
+                <ng-template #formatoMoneda>
+                    {{ row[columna] | currency:'$':'symbol':'1.2-2' }}
+                </ng-template>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
