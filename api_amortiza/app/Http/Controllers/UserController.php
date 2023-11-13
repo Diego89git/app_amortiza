@@ -42,12 +42,21 @@ class UserController extends Controller
     }
     public function index()
     {
-        $usuarios=User::all();
+        $usuarios=User::select('users.*','permiso.IdUser','permiso.IdInstitucion','permiso.IdRol','institucion.Nombre as Institucion','rol.Nombre as Rol')
+        ->join('permiso','users.id','=','permiso.IdUser')
+        ->join('institucion','permiso.IdInstitucion','=','institucion.Id')
+        ->join('rol','permiso.IdRol','=','rol.Id')
+        ->get();
         return response()->json($usuarios);
     }
     public function getById($id){
         try {
-            $data=User::find($id);
+            $usuarios=User::select('users.*','permiso.IdUser','permiso.IdInstitucion','permiso.IdRol','institucion.Nombre as Institucion','rol.Nombre as Rol')
+                ->join('permiso','users.id','=','permiso.IdUser')
+                ->join('institucion','permiso.IdInstitucion','=','institucion.Id')
+                ->join('rol','permiso.IdRol','=','rol.Id')
+                ->where('users.Id','=',$id)
+                ->get();
             return response()->json([
                 'estado'=>true,
                 'dato'=>$data
@@ -62,7 +71,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            User::find($Id)->update([
+            User::find($id)->update([
                 'name'=>$request->name,
                 'email'=>$request->email,
                 'password'=>Hash::make($request->password)]);

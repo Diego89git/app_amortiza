@@ -14,6 +14,10 @@ export class AmortizacionService {
   public getInfo():Observable<any>{
     return this.http.get<any>(this.urlApi+'info');
   }
+  public getInfoByIdInstitucion(id:any):Observable<any>{
+    const apiUrl = `${this.urlApi}info/${id}`;
+    return this.http.get<any>(apiUrl);
+  }
   public generarTabla(data:any):Observable<any>{
     return this.http.post<any>(this.urlApi+'amortiza',data);
   }

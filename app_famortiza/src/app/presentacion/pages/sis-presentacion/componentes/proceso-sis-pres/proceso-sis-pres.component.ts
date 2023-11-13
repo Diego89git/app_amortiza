@@ -113,7 +113,11 @@ generar(){
 calcularValorEntrega(){
   let total=0;
     for (const cargos  of this.resultCargosEntrega) {
-      total+=cargos.valor
+      total+=cargos.Valor
+      console.log('cargo:');
+      console.log(cargos);
+      
+      
     }
   this.valorEntregar=this.Monto-total
 }

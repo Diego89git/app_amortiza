@@ -1,0 +1,13 @@
+<div class="content">
+    <div class="cabecera">
+        <app-cab-admincli></app-cab-admincli>
+    </div>
+    <div class="contenido">
+        <div class="menu open" [ngClass]="{'contraer':contraerSelected}">
+            <app-cont-menu-admincli (onClick)="contraer($event)"></app-cont-menu-admincli>
+        </div>
+        <div class="vistas">
+            <app-contenido-admincli></app-contenido-admincli>
+        </div>
+    </div>
+</div>

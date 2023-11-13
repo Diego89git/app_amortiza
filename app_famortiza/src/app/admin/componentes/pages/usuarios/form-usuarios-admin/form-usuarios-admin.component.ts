@@ -10,6 +10,13 @@ import { UsuariosService } from 'src/app/servicios/APIS/api-amortiza/usuarios.se
 })
 export class FormUsuariosAdminComponent {
   @Input() data: any
+
+  @Input() instituciones: any
+  @Input() roles: any
+
+  @Input() selectedInstitucion: any  
+  @Input() selectedRol: any
+  
   submitted: boolean = false;
   @Input() dataDialog!: boolean;
   @Input() dataSet!: any[];
@@ -38,7 +45,9 @@ export class FormUsuariosAdminComponent {
   }
   saveRegistro(): void {
     this.submitted = true;
-    if (this.data.Nombre?.trim()) {
+    this.data.IdInstitucion=this.selectedInstitucion.Id
+    this.data.IdRol=this.selectedRol.Id
+    if (this.data.name?.trim()) {
       if (this.data.id) {
         const index = this.findIndexById(this.data.id);
         if (index !== -1) {
@@ -69,8 +78,13 @@ export class FormUsuariosAdminComponent {
   }
   agregarData(row: any): void {
     this.usuariosService.postData(row).subscribe(response => {
+      if(response.estado){
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Registro Creado', life: 3000 });
+      }else{
+        this.messageService.add({ severity: 'error', summary: 'Advertencia', detail: 'Registro NO Eliminado : ' + response.errores, life: 3000 });
+      }
       this.onClick.emit()
-      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Registro Creado', life: 3000 });
+      
     });
   }
   actualizarData(row: any): void {

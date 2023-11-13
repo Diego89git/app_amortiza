@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PresentacionModule } from './presentacion/presentacion.module';
 import { AdminModule } from './admin/admin.module';
+import { AdmincliModule } from './admincli/admincli.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AdminModule } from './admin/admin.module';
     BrowserModule,
     AppRoutingModule,
     PresentacionModule,
-    AdminModule
+    AdminModule,
+    AdmincliModule
   ],
   providers: [],
   bootstrap: [AppComponent]

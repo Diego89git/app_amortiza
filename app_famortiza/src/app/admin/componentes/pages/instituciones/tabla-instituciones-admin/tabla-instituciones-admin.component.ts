@@ -137,4 +137,9 @@ export class TablaInstitucionesAdminComponent {
       }
     );
   }
+  habilitar(row:any){
+    this.institucionesServices.habilitar(row.Id).subscribe(data=>{
+      this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Se a establecido a '+row.Nombre+' como Institucion habilitada.', life: 3000 });
+    })
+  }
 }

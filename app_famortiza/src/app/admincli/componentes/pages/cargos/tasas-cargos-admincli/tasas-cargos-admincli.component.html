@@ -1,0 +1,30 @@
+<p-dialog
+[(visible)]="dataDialog" 
+[style]="{ width: '450px' }" 
+header="Detalle de Registro" 
+[modal]="true"
+[style]="{ width: '700px', height: '750px' }" 
+(onShow)="showDialog()" 
+(onHide)="hideDialog()">
+<div class="field">
+   <p>Aplicar a Todas las Tasas </p><p-button (click)="aplicarTodo()" icon="pi pi-check"></p-button>
+</div>
+<p-divider></p-divider>
+<div class="field">
+    <p>Quitar de Todas las Tasas</p><p-button (click)="quitarTodo()" icon="pi pi-check"></p-button>
+ </div>
+ <p-divider></p-divider>
+ <div class="field" *ngIf="tasasPasivas">
+    <p>Aplicar a:</p>
+    <div class="card flex justify-content-center">
+        <p-dropdown [options]="tasasPasivas" [(ngModel)]="selectedTasaPasiva" optionLabel="Tasa"  placeholder="Lista Tasas Pasivas"></p-dropdown>
+    </div><p-button (click)="aplicarByTasa()" icon="pi pi-check"></p-button>
+ </div>
+ <p-divider></p-divider>
+ <div class="field" *ngIf="tasasActivas">
+    <p>Quitar a:</p>
+    <div class="card flex justify-content-center">
+        <p-dropdown [options]="tasasActivas" [(ngModel)]="selectedTasaActiva" optionLabel="Tasa"  placeholder="Lista Tasas Activas"></p-dropdown>
+    </div><p-button  (click)="quitarByTasa()" icon="pi pi-check"></p-button>
+ </div>
+</p-dialog>

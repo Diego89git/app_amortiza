@@ -40,17 +40,23 @@ export class TablaUsuariosAdminComponent {
   cols!: Column[];
   dataDialog: boolean = false;
   exportColumns!: ExportColumn[];
-
+  selectedInstitucion:any={Id:0,Nombre:'Seleccione una Institucion'}
+  selectedRol:any={Id:0,Nombre:'Seleccione un Rol'}
+  instituciones:any[]=[]
+  roles:any[]=[]
   mostrarForm: boolean = false
   constructor(private usuariosServices: UsuariosService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
+    private institucionService: InstitucionesService,
+    private rolService:RolesService
     ) {
 
   }
   ngOnInit() {
     this.obtenerDataSet()
-
+    this.obtenerInsituciones()
+    this.obtenerRoles()
     this.cols = [
       { field: 'Id', header: 'Id', customExportHeader: 'Codigo Registro' },
       { field: 'name', header: 'Nombre' },
@@ -64,7 +70,16 @@ export class TablaUsuariosAdminComponent {
       this.dataSet = data
     })
   }
-  
+  obtenerInsituciones(){
+    this.institucionService.getData().subscribe(data=>{
+      this.instituciones=data;
+    })
+  }
+  obtenerRoles(){
+    this.rolService.getData().subscribe(data=>{
+      this.roles=data
+    })
+  }
   exportPdf() {
     import('jspdf').then((jsPDF) => {
       import('jspdf-autotable').then((x) => {
@@ -100,7 +115,10 @@ export class TablaUsuariosAdminComponent {
   editRow(row: any) {
     this.mostrarForm = true
     this.data = { ...row };
+    this.selectedInstitucion={ ...this.instituciones.find((reg: any) => reg.Id == row.IdInstitucion) };
+    this.selectedRol={ ...this.roles.find((reg: any) => reg.Id == row.IdRol) };
     this.dataDialog = true;
+    
   }
   deleteRow(row: any) {
     this.confirmationService.confirm({
@@ -116,6 +134,9 @@ export class TablaUsuariosAdminComponent {
     this.obtenerDataSet()
     this.mostrarForm = false
     this.dataDialog = false;
+    this.selectedInstitucion={}
+    this.selectedInstitucion={Id:0,Nombre:'Seleccione una Institucion'}
+    this.selectedRol={Id:0,Nombre:'Seleccione un Rol'}
   }
   eliminarRegistro(id: number) {
     this.usuariosServices.deleteData(id).subscribe(

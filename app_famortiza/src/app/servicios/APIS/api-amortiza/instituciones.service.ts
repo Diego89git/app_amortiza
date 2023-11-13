@@ -19,6 +19,22 @@ export class InstitucionesService {
     })
     return this.http.get<any>(this.urlApi, { headers });
   }
+  public getDataById(id:any):Observable<any>{
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    })
+    const apiUrl = `${this.urlApi}/${id}`;
+    return this.http.get<any>(apiUrl, { headers });
+  }
+  public habilitar(id:any):Observable<any>{
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    })
+    const apiUrl = `${this.urlApi}/habilitar/${id}`;
+    return this.http.get<any>(apiUrl, { headers });
+  }
   public postData(data: any): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({

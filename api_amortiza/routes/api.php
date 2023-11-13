@@ -36,6 +36,8 @@ Route::post('auth/login',[AuthController::class,'login']);
 
 Route::post('amortiza',[AmortizaController::class,'generarAmortizacion']);
 Route::get('/info',[AmortizaController::class,'info']);
+Route::get('/info/{Id}',[AmortizaController::class,'getInfoByIdInstitucion']);
+
 
 Route::get('segmentos/institucion/{Id}',[SegmentoController::class,'getByInstitucion']);
 Route::get('tasas/institucion/{Id}',[TasaController::class,'getByInstitucion']);
@@ -92,6 +94,8 @@ Route::middleware(['auth:sanctum'])->group(function(){
     });
     Route::prefix('aplicarcargos')->group(function(){
         Route::get('/',[AplicacioncargoController::class,'get']);
+        Route::get('/act/{Id}',[AplicacioncargoController::class,'getActivos']);
+        Route::get('/eli/{Id}',[AplicacioncargoController::class,'getPasivos']);
         Route::post('/',[AplicacioncargoController::class,'create']);
         Route::get('/{Id}',[AplicacioncargoController::class,'getById']);
         Route::put('/{Id}',[AplicacioncargoController::class,'update']);
@@ -103,7 +107,7 @@ Route::middleware(['auth:sanctum'])->group(function(){
     });
     Route::prefix('users')->group(function(){
         Route::get('/',[UserController::class,'index']);
-        Route::post('/',[UserController::class,'store']);
+        Route::post('/',[UserController::class,'create']);
         Route::get('/{Id}',[UserController::class,'getById']);
         Route::put('/{Id}',[UserController::class,'update']);
         Route::delete('/{Id}',[UserController::class,'destroy']);
