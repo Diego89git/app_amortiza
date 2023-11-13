@@ -1,0 +1,20 @@
+.content-cab{
+    background-color: var(--color-menu);
+    color: white;
+    display: flex;
+    justify-content: center;
+    height: 35px;
+    min-height: 25px;
+    align-items: center;
+    margin: 2px;
+    border-radius: 5px;
+    box-shadow: rgb(165, 150, 150) 2px 2px 2px 1px;
+    
+}
+
+.icono{
+    padding: 0 15px;
+}
+.titulo{
+    padding: 0 15px;
+}

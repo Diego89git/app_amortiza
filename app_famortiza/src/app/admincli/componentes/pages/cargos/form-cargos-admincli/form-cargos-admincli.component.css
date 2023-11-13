@@ -1,0 +1,17 @@
+.content{
+    margin: 10px 0;
+}
+
+.field{
+    margin: 25px 0;
+    width: 100%;
+}
+.form-panel{
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+.group-panel{
+    display: flex;
+    gap: 50px;
+}

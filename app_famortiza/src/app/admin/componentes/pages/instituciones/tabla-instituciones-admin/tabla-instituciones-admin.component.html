@@ -53,6 +53,8 @@
                 </td>
                 <td>{{ row.Habilitado}}</td>                
                 <td class="btns-options">
+                    <button *ngIf="!row.Habilitado" pButton pRipple icon="pi pi-check-circle" class="p-button-rounded p-button-Secondary mr-2"
+                        (click)="habilitar(row)"></button>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
                         (click)="editRow(row)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"

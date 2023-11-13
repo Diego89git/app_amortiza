@@ -1,0 +1,22 @@
+<div class="content">
+    <div class="titulo">
+    <h3>{{segmento.Nombre}}</h3>
+    </div>
+    <div class="imagen">
+    <img src="{{segmento.RutaImagen}}" alt="">
+    </div>
+    <div class="descripcion" title="{{segmento.Descripcion}}">
+    <p>{{segmento.Descripcion}}</p>
+    </div>
+    <div class="tasas">
+        <li *ngFor="let item of (mostrarMas ? items : segmento.Tasas.slice(0, 3)); let i = index">
+            {{ item.Detalle }}
+          </li>
+    </div>
+    <div class="limites">
+        <p *ngIf="segmento.TasaMin">Tasas:<span>  {{segmento.TasaMin/100| percent:'1.2-2' }} - {{segmento.TasaMax/100| percent:'1.2-2'}}</span> </p>
+        <p *ngIf="segmento.PlazoMin">Plazos: <span>{{segmento.PlazoMin}} - {{segmento.PlazoMax}} meses</span></p>
+        <p *ngIf="segmento.MontoMin">Montos:<span>{{segmento.MontoMin| currency:'$':'symbol':'1.2-2'}} - {{segmento.MontoMax| currency:'$':'symbol':'1.2-2'}}</span></p>
+    </div>
+    </div>
+    

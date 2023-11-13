@@ -19,6 +19,10 @@ export class SegmentosService {
     })
     return this.http.get<any>(this.urlApi, { headers });
   }
+  public getDataByInstitucion(id:any):Observable<any>{
+    const apiUrl = `${this.urlApi}/institucion/${id}`;
+    return this.http.get<any>(apiUrl);
+  }
   public postData(data: any): Observable<any> {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({

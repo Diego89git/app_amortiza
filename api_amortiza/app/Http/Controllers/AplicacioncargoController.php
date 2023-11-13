@@ -15,6 +15,26 @@ class AplicacioncargoController extends Controller
         ->get();
         return response()->json($data);
     }
+    public function getActivos($id)
+    {
+        $data=Aplicacioncargo::select('aplicacioncargo.*','tasa.Detalle as Tasa','cargo.Nombre as Cargo')
+        ->join('tasa','aplicacioncargo.IdTasa','=','tasa.Id')
+        ->join('cargo','aplicacioncargo.IdCargo','=','cargo.Id')
+        ->where('aplicacioncargo.Estado','=','ACT')
+        ->where('aplicacioncargo.IdCargo','=',$id)
+        ->get();
+        return response()->json($data);
+    }
+    public function getPasivos($id)
+    {
+        $data=Aplicacioncargo::select('aplicacioncargo.*','tasa.Detalle as Tasa','cargo.Nombre as Cargo')
+        ->join('tasa','aplicacioncargo.IdTasa','=','tasa.Id')
+        ->join('cargo','aplicacioncargo.IdCargo','=','cargo.Id')
+        ->where('aplicacioncargo.Estado','=','ELI')
+        ->where('aplicacioncargo.IdCargo','=',$id)
+        ->get();
+        return response()->json($data);
+    }
     public function create(Request $request)
     {
 

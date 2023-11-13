@@ -1,0 +1,32 @@
+COMANDOS ANGULAR
+ng g m admincli --routing
+ng g c admincli/principal-admincli
+ng g c admincli/componentes/pagina/cab-admincli
+ng g c admincli/componentes/pagina/contenido-admincli
+ng g c admincli/componentes/pagina/pie-admincli
+
+ng g c admincli/componentes/menu/cont-menu-admincli
+ng g c admincli/componentes/menu/item-menu-admincli
+
+ng g c admincli/componentes/pages/dashboard-admincli
+ng g c admincli/componentes/pages/dashboard-admincli/card-dashboard-admincli
+
+ng g c admincli/componentes/pages/institucion/pag-institucion-admincli
+
+ng g c admincli/componentes/pages/segmentos/pag-segmentos-admincli
+ng g c admincli/componentes/pages/segmentos/tabla-segmentos-admincli
+ng g c admincli/componentes/pages/segmentos/form-segmentos-admincli
+
+ng g c admincli/componentes/pages/tasas/pag-tasas-admincli
+ng g c admincli/componentes/pages/tasas/tabla-tasas-admincli
+ng g c admincli/componentes/pages/tasas/form-tasas-admincli
+
+ng g c admincli/componentes/pages/cargos/pag-cargos-admincli
+ng g c admincli/componentes/pages/cargos/tabla-cargos-admincli
+ng g c admincli/componentes/pages/cargos/form-cargos-admincli
+ng g c admincli/componentes/pages/cargos/tasas-cargos-admincli
+
+ng g s servicios/APIS/api-amortiza/aplicarcargos
+
+
+COMANDOS LARAVEL

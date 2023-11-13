@@ -1,0 +1,105 @@
+<div class="content" *ngIf="data">
+    <div class="content-1">
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-float-label">
+                    <input pInputText id="nombre" [(ngModel)]="data.Nombre" />
+                    <label htmlFor="nombre">Nombre</label>
+                    <small class="p-error" *ngIf="!data?.Nombre">Nombre es requerido.</small>
+                </span>
+            </div>
+        </div>
+        <div class="field">
+            <span class="p-float-label">
+                <textarea rows="5" cols="58" pInputTextarea id="observacion" [(ngModel)]="data.Observacion"></textarea>
+                <label htmlFor="observacion">Observación</label>
+            </span>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-float-label">
+                    <span class="p-inputgroup-addon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </span>
+                    <input pInputText id="direccion" [(ngModel)]="data.Direccion" placeholder="Dirección" />
+                    <label for="direccion">Dirección</label>
+                </span>
+
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-float-label">
+                    <span class="p-inputgroup-addon">
+                        <i class="fa-solid fa-link"></i>
+                    </span>
+                    <input pInputText id="logo" [(ngModel)]="data.RutaLogo" placeholder="Link Logo" />
+                    <label for="logo">Link del logo</label>
+                </span>
+
+            </div>
+            
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <img src="{{data.RutaLogo}}" width="125px" alt="">
+
+            </div>
+        </div>
+    </div>
+    <div class="content-2">
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-float-label">
+                    <span class="p-inputgroup-addon">
+                        <i class="fa-solid fa-globe"></i>
+                    </span>
+                    <input pInputText id="pagina" [(ngModel)]="data.PaginaWeb" placeholder="Pagina Web" />
+                    <label for="pagina">Pagina web</label>
+                </span>
+
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-float-label">
+                    <span class="p-inputgroup-addon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </span>
+                    <input pInputText id="email" [(ngModel)]="data.Correo" placeholder="Correo Electronico" />
+                    <label for="email">Correo electrónico</label>
+                </span>
+
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-float-label">
+                    <span class="p-inputgroup-addon">
+                        <i class="fa-solid fa-phone"></i>
+                    </span>
+                    <input pInputText id="telefono" [(ngModel)]="data.Telefono" placeholder="Teléfono" />
+                    <label for="telefono">Teléfono</label>
+                </span>
+
+            </div>
+        </div>
+        <div class="field">
+            <div class="p-inputgroup">
+                <span class="p-float-label">
+                    <span class="p-inputgroup-addon">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                    </span>
+                    <input pInputText id="celular" [(ngModel)]="data.Celular" placeholder="Celular" />
+                    <label for="celular">Celular</label>
+                </span>
+
+            </div>
+        </div>
+    </div>
+    <p-button label="Actualizar" icon="pi pi-check" (click)="actualizar()" iconPos="right"></p-button>
+
+
+</div>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

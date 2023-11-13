@@ -1,0 +1,105 @@
+<p-dialog [(visible)]="dataDialog" [style]="{ width: '450px' }" header="Detalle de Registro" [modal]="true"
+    [style]="{ width: '800px', height: '550px' }" (onShow)="showDialog()" (onHide)="hideDialog()">
+    <ng-template pTemplate="content">
+        <div class="form-panel">
+            <div class="field">
+                <form [formGroup]="formGroup">
+                    <h3>Segmento de Crédito</h3>
+                    <p-dropdown formControlName="IdSegmento" [options]="dataDropdown" [(ngModel)]="selectedDropdown"
+                        optionLabel="Titulo" [showClear]="false" placeholder="Selecciona un Segmento">
+                        <ng-template pTemplate="selectedItem">
+                            <div class="flex" *ngIf="selectedDropdown">
+                                <div>{{ selectedDropdown.Nombre }}</div>
+                            </div>
+                        </ng-template>
+                        <ng-template let-rowDropdown pTemplate="item">
+                            <div class="flex">
+                                <div>{{ rowDropdown.Nombre }}</div>
+                            </div>
+                        </ng-template>
+                    </p-dropdown>
+                </form>
+            </div>
+            <p-divider></p-divider>
+            <h3>Datos del tipo de tasa a Crear</h3>
+            <div class="group-panel">
+                <div class="subgroup-panel">
+                    <div class="field">
+                        <span class="p-float-label">
+                            <input pInputText id="detalle" [(ngModel)]="data.Detalle" />
+                            <label htmlFor="detalle">Detalle</label>
+                            <small class="p-error" *ngIf="submitted && !data?.Detalle">Nombre es requerido.</small>
+                        </span>
+                    </div>
+                    <div class="field">
+                        <span class="p-float-label">
+                            <textarea rows="5" cols="23" id="observacion" pInputTextarea
+                                [(ngModel)]="data.Observacion"></textarea>
+                            <label htmlFor="observacion">Observacion</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="subgroup-panel">
+                    <div class="field">
+                        <span class="p-float-label">
+                            <p-inputNumber id="tasaN" [(ngModel)]="data.TasaNominal" mode="decimal"
+                                [minFractionDigits]="2" [maxFractionDigits]="4" inputId="tasaN" prefix="%">
+                            </p-inputNumber>
+                            <label htmlFor="tasaN">Tasa Nominal</label>
+                        </span>
+                    </div>
+                    <div class="field">
+                        <span class="p-float-label">
+                            <p-inputNumber id="tasaE" [(ngModel)]="data.TasaEfectiva" mode="decimal"
+                                [minFractionDigits]="2" [maxFractionDigits]="4" inputId="tasaE" prefix="%">
+                            </p-inputNumber>
+                            <label htmlFor="tasaE">Tasa Efectiva</label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <p-divider></p-divider>
+            <h3>Limites relacionados a la tasa</h3>
+            <div class="group-panel">
+                <div class="subgroup-panel">
+                    <div class="field">
+                        <span class="p-float-label">
+                            <p-inputNumber id="plazoMin" [(ngModel)]="data.PlazoMinimo" mode="decimal"
+                                inputId="withoutgrouping" [useGrouping]="false"> </p-inputNumber>
+                            <label htmlFor="plazoMin">Plazo Minimo</label>
+                        </span>
+                    </div>
+                    <div class="field">
+                        <span class="p-float-label">
+                            <p-inputNumber id="plazoMax" [(ngModel)]="data.PlazoMaximo" mode="decimal"
+                                inputId="withoutgrouping" [useGrouping]="false"> </p-inputNumber>
+                            <label htmlFor="plazoMax">Plazo Maximo</label>
+                        </span>
+                    </div>
+                </div>
+                <div class="subgroup-panel">
+                    <div class="field">
+                        <span class="p-float-label">
+                            <p-inputNumber id="montoMin" [(ngModel)]="data.MontoMinimo" mode="currency" currency="USD"
+                                locale="en-US" [minFractionDigits]="2" [maxFractionDigits]="2"> </p-inputNumber>
+                            <label htmlFor="montoMin">Monto Minimo</label>
+                        </span>
+                    </div>
+                    <div class="field">
+                        <span class="p-float-label">
+                            <p-inputNumber id="montoMax" [(ngModel)]="data.MontoMaximo" mode="currency" currency="USD"
+                                locale="en-US" [minFractionDigits]="2" [maxFractionDigits]="2"> </p-inputNumber>
+                            <label htmlFor="montoMax">Monto Maximo</label>
+                        </span>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"
+            (click)="hideDialog()"></button>
+        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"
+            (click)="saveRegistro()"></button>
+    </ng-template>
+</p-dialog>

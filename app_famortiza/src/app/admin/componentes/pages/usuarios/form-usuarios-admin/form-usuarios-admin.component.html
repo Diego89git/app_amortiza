@@ -3,7 +3,7 @@
     [style]="{ width: '450px' }" 
     header="Detalle de Registro" 
     [modal]="true"
-    [style]="{ width: '400px', height: '500px' }"
+    [style]="{ width: '600px', height: '650px' }"
     (onShow)="showDialog()"
     (onHide)="hideDialog()">
     <ng-template pTemplate="content">
@@ -26,6 +26,30 @@
                 <label htmlFor="observacion">Contraseña</label>
             </span>            
         </div>
+        <p-dropdown [options]="instituciones" [(ngModel)]="selectedInstitucion" optionLabel="name" placeholder="Selecciona una Institución">
+            <ng-template pTemplate="selectedItem">
+                <div class="flex align-items-center gap-2" *ngIf="selectedInstitucion">                    
+                    <div>{{ selectedInstitucion.Nombre }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-institucion pTemplate="item">
+                <div class="flex align-items-center gap-2">                    
+                    <div>{{ institucion.Nombre }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
+        <p-dropdown [options]="roles" [(ngModel)]="selectedRol" optionLabel="name" placeholder="Selecciona un Rol">
+            <ng-template pTemplate="selectedItem">
+                <div class="flex align-items-center gap-2" *ngIf="selectedRol">                    
+                    <div>{{ selectedRol.Nombre }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-rol pTemplate="item">
+                <div class="flex align-items-center gap-2">                    
+                    <div>{{ rol.Nombre }}</div>
+                </div>
+            </ng-template>
+        </p-dropdown>
     </ng-template>
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>

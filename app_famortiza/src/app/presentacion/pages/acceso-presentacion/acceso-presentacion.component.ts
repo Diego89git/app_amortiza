@@ -36,7 +36,16 @@ export class AccesoPresentacionComponent {
             this.authService.setToken(response.token);
 
             // Puedes redirigir a otra página aquí si es necesario
-            this.router.navigate(['/admin']);
+            
+            localStorage.setItem('IdInstitucionSelected', response.dato.IdInstitucion);
+            localStorage.setItem('Rol', response.dato.Rol);
+            let rol=response.dato.Rol
+            if(rol=='Admin'){
+              this.router.navigate(['/admin']);
+            }else{
+              this.router.navigate(['/admincli']);
+            }
+            
           } else {
             // La API devolvió un estado falso, puedes manejar el error según tus necesidades
             console.error('Error al iniciar sesión:', response.mesaje);

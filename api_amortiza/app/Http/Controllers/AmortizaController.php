@@ -78,4 +78,41 @@ class AmortizaController extends Controller
         $info->Segmentos=$nivel;
         return response()->json($info);
     }
+    public function getInfoByIdInstitucion($id){
+        $info= new \stdClass();
+        $institucion=Institucion::where('Habilitado',true)->get();
+        $segmentos=Segmento::select('segmento.Id','segmento.Nombre','segmento.Descripcion','segmento.RutaImagen')
+        ->join('institucion','segmento.IdInstitucion','=','institucion.Id')
+        ->where('institucion.Id','=',$id)
+        ->get();
+        $nivel=[];
+        if(count($segmentos)>0){
+            foreach ($segmentos as $segmento) {
+                $tasas=Tasa::select('tasa.Detalle','tasa.Observacion')
+                ->where('tasa.IdSegmento','=',$segmento->Id)->get();
+                $tasaMin=Tasa::where('IdSegmento', $segmento->Id)->min('TasaEfectiva');             
+                $tasaMax=Tasa::where('IdSegmento', $segmento->Id)->max('TasaEfectiva');
+                $plazoMin=Tasa::where('IdSegmento', $segmento->Id)->min('PlazoMinimo');             
+                $plazoMax=Tasa::where('IdSegmento', $segmento->Id)->max('PlazoMaximo');
+                $montoMin=Tasa::where('IdSegmento', $segmento->Id)->min('MontoMinimo');             
+                $montoMax=Tasa::where('IdSegmento', $segmento->Id)->max('MontoMaximo');
+                $dato=[
+                    'Nombre'=>$segmento->Nombre,
+                    'Descripcion'=>$segmento->Descripcion,
+                    'RutaImagen'=>$segmento->RutaImagen,
+                    'Tasas'=>$tasas,
+                    'TasaMin'=>$tasaMin,
+                    'TasaMax'=>$tasaMax,
+                    'PlazoMin'=>$plazoMin,
+                    'PlazoMax'=>$plazoMax,
+                    'MontoMin'=>$montoMin,
+                    'MontoMax'=>$montoMax
+                ];
+                $nivel[]=$dato;
+            }
+        }
+        $info->Institucion=$institucion;
+        $info->Segmentos=$nivel;
+        return response()->json($info);
+    }
 }
